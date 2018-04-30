@@ -19,6 +19,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/layout.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -44,6 +45,18 @@
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Entrar') }}</a></li>
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Cadastrar-se') }}</a></li>
                         @else
+                        
+                            <li> 
+
+                            @if (empty(Auth::user()->foto)) :
+                            <img src="{{asset('uploads/avatars/images/perfil/user.jpg')}}" class="thumb-head rounded-circle">
+                            @else :
+                                <img src="{{ asset('uploads/avatars/'.Auth::user()->id.'/'.Auth::user()->foto ) }}" class="thumb-head rounded-circle">
+                                
+                            @endif                              
+                        
+                            </li>
+                                
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -51,7 +64,9 @@
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                                    <a href="{{ route('perfil')}}" class="dropdown-item">Perfil</a>
+                                    <a href="{{ route('home') }}" class="dropdown-item">Home</a>
+
+                                    <a href="{{ route('user.Perfil') }}" class="dropdown-item">Perfil</a>
 
                                     <a href="{{ route('trocaSenha')}}" class="dropdown-item">Mudar Senha</a>
 
@@ -72,6 +87,7 @@
             </div>
         </nav>
 
+        
         <main class="py-4">
             @yield('content')
         </main>

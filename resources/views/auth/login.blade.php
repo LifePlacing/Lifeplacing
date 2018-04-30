@@ -2,6 +2,8 @@
 
 @section('content')
 <div class="container">
+
+    
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -14,7 +16,8 @@
                     @endif
                     @if (session('warning'))
                         <div class="alert alert-warning">
-                            {{ session('warning') }}
+                            {{ session('warning') }}                          
+                            
                         </div>
                 @endif
 

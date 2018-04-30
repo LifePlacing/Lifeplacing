@@ -1,23 +1,42 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card card-default">
-                    <div class="card-header">Example Component</div>
-
-                    <div class="card-body">
-                        I'm an example component.
-                    </div>
-                </div>
-            </div>
+<div class="form-group row align-items-center">
+        <div class="col-md-4 media">    
+            <img :src="foto" class="img-fluid thumb" alt="Foto do Perfil"> 
         </div>
-    </div>
+        <div class="col-md-8">            
+            <input type="file" class="form-control-file" name="foto" aria-describedby="file" @change="getimage"> 
+        </div>
+</div>  
 </template>
 
 <script>
     export default {
-        mounted() {
-            console.log('Component mounted.')
-        }
+
+        props:['user'],
+
+
+
+        data(){
+
+            return {
+
+                  foto: "uploads/avatars/"+this.user.id+"/"+this.user.foto
+            }
+        },
+
+        methods:{
+
+        getimage(e){
+                let image = e.target.files[0]
+                let reader = new FileReader();
+                reader.readAsDataURL(image);
+                reader.onload = (e) => {
+                    this.foto = e.target.result;
+                }
+        }   
+
     }
-</script>
+
+    }
+    
+</script>      

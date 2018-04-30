@@ -88,6 +88,9 @@ return [
     'uploaded'             => 'O :attribute falhou ao ser enviado.',
     'url'                  => 'O formato de :attribute é inválido.',
 
+    'image64' => ':attribute deve ser um arquivo do tipo: :values.',
+
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

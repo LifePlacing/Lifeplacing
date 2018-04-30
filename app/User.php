@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Notifications\MsgResetPassword as ResetPasswordNotification;
 
 class User extends Authenticatable
 {
@@ -14,20 +15,17 @@ class User extends Authenticatable
         return $this->hasOne('App\VerifyUser');
     }
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    public function sendPasswordResetNotification($token) 
+    { 
+        $this->notify(new ResetPasswordNotification($token)); 
+
+    }
+
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'sexo', 'foto',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
+
     protected $hidden = [
         'password', 'remember_token',
     ];
