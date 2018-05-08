@@ -33,17 +33,35 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                   <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav ml-auto ">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a class="nav-link" href="{{ route('login') }}">{{ __('Entrar') }}</a></li>
-                            <li><a class="nav-link" href="{{ route('register') }}">{{ __('Cadastrar-se') }}</a></li>
+                           <li>
+                            <form method="POST" class="login-form" action="{{ url('/login') }}">                                
+                            @csrf
+                            <div class="form-inline">
+                                <div class="form-group mx-sm-2 mb-1">
+                                    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus placeholder="Digite seu E-mail"> 
+                                </div>
+                                <div class="form-group mx-sm-2 mb-1">
+                                    <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required placeholder="Digite sua Senha">
+                                </div>
+                                <div class="form-group mx-sm-1 mb-1">
+                                    <button type="submit" class="btn btn-primary">{{ __('Entrar') }}</button>
+                                </div>
+                            </div>
+                            <div class="form-inline d-flex flex-row-reverse ">
+                                <div class="">
+                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    {{ __('Esqueceu sua senha?') }}
+                                    </a>
+                                </div>
+                            </div>
+
+                            </form>
+                            </li>
+
                         @else
                         
                             <li> 

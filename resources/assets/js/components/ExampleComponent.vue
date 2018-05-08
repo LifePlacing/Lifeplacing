@@ -1,11 +1,13 @@
 <template>
-<div class="form-group row align-items-center">
-        <div class="col-md-4 media">    
-            <img :src="foto" class="img-fluid thumb" alt="Foto do Perfil"> 
-        </div>
-        <div class="col-md-8">            
-            <input type="file" class="form-control-file" name="foto" aria-describedby="file" @change="getimage"> 
-        </div>
+<div class="row">
+    <div class="media mx-sm-2 mb-4">    
+        <img :src="foto" class="img-fluid thumb" alt="Foto do Perfil"> 
+    </div>            
+    <div class="custom-file mx-sm-2 mb-4">
+        <input type="file" name="foto" @change="getimage" lang="pt_BR">     
+
+    </div>
+
 </div>  
 </template>
 
@@ -13,9 +15,7 @@
     export default {
 
         props:['user'],
-
-
-
+        
         data(){
 
             return {

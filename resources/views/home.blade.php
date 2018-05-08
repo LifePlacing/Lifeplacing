@@ -32,7 +32,7 @@
 
                 <div class="row">
                     <div class="col-md-2">
-                        <img width="100px" height="100px" src="{{ asset('uploads/avatars/'.Auth::user()->foto ) }}">  
+                        <img width="100px" height="100px" src="{{ asset('uploads/avatars/'.Auth::user()->id. '/'.Auth::user()->foto ) }}">  
                     </div>
                     <div class="col-md-10">
                         Seja bem vindo! {{ Auth::user()->name }}  <br>

@@ -11,7 +11,7 @@ class AdicionaSexoPerfilUsuario extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('sexo', 2)->default('M');           
-            $table->binary('foto')->nullable();           
+            $table->binary('foto')->nullable();                     
         });
     }
 

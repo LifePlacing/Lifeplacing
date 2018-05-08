@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
+use Illuminate\Http\Response;
 
 class UserController extends Controller
 {
@@ -25,10 +26,29 @@ class UserController extends Controller
     public function update(Request $request)
     {
         $user = \Auth::user();
+
         $user->name = $request->input('name');
         $user->email = $request->input('email');
-        $user->sexo =  $request->input('sexo'); 
-       
+        $user->sexo =  $request->input('sexo');
+        $user->logradouro = $request->input('logradouro');
+        $user->numero = $request->input('numero');
+        $user->complemento = $request->input('complemento');
+        $user->bairro = $request->input('bairro');
+        $user->cidade = $request->input('cidade');
+        $user->estado = $request->input('estado');
+
+        if (!$request->input('cep') == '') {
+
+            $valCep = trim($request->input('cep'));            
+            $avaliaCep = preg_match('/^[0-9]{8}$/',$valCep); 
+
+            if(!$avaliaCep) {            
+                     return back()->with(['errors'=>'cep invalido']);        
+            }else
+                {
+                    $user->cep = $valCep;
+                }
+        }
 
         if ( !$request->input('password') == '') 
         {

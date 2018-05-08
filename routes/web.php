@@ -1,8 +1,8 @@
 <?php
 
-Route::get('/', 'IniController@inicio')->name('inicio');
-
 Auth::routes();
+
+Route::get('/', 'IniController@inicio')->name('inicio')->middleware('auth');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/mudarsenha', 'HomeController@showChangePasswordForm')->name('trocaSenha');
